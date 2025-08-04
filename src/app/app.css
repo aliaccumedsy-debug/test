@@ -1,0 +1,114 @@
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --header-background: #f0f0f0;
+  --border-color: #cccccc;
+  --highlight-color: yellow;
+}
+
+body.dark-mode {
+  --background-color: #333333;
+  --text-color: #ffffff;
+  --header-background: #555555;
+  --border-color: #888888;
+  --highlight-color: #cccc00; /* A different highlight color for dark mode */
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+  background-color: var(--header-background);
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+main {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.note-section {
+  flex: 2;
+  position: relative;
+  display: flex; /* Use flexbox for button layout */
+  flex-direction: column; /* Stack textarea and buttons */
+}
+
+textarea {
+  width: 100%;
+  flex-grow: 1; /* Allow textarea to grow and fill space */
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: transparent; /* Make textarea background transparent */
+  color: var(--text-color);
+  resize: none;
+  font-size: 1rem;
+  position: relative; /* Ensure textarea is above highlighted text */
+  z-index: 1;
+}
+
+.highlighted-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Make highlighted text fill the container */
+  padding: 10px;
+  border: 1px solid transparent;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  pointer-events: none; /* Allow interaction with textarea */
+  color: transparent; /* Hide the text in the highlighted layer */
+  font-size: 1rem; /* Match font size with textarea */
+}
+
+.highlighted-text span {
+  background-color: var(--highlight-color);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.extracted-terms {
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 4个体px;
+  padding: 10px;
+}
+
+.term-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column; /* Stack sections vertically on smaller screens */
+  }
+
+  .note-section,
+  .extracted-terms {
+    flex: none; /* Remove flex-grow on smaller screens */
+    width: 100%; /* Make sections full width */
+  }
+
+  textarea {
+    height: 200px; /* Adjust textarea height on smaller screens */
+  }
+}
